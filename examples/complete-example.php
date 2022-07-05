@@ -1,14 +1,14 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 date_default_timezone_set('UTC');
 
 use LeonardoTeixeira\Pushover\Client;
+use LeonardoTeixeira\Pushover\Exceptions\PushoverException;
 use LeonardoTeixeira\Pushover\Message;
 use LeonardoTeixeira\Pushover\Priority;
 use LeonardoTeixeira\Pushover\Sound;
-use LeonardoTeixeira\Pushover\Exceptions\PushoverException;
 
 $client = new Client('YOUR_USER_CODE_HERE', 'YOUR_TOKEN_HERE');
 

@@ -15,16 +15,16 @@ class ClientTest extends TestCase
         $this->clients = [
             [
                 'user' => 'DFx4rPNV232ad49uzPE4vAKaU2m67q',
-                'token' => 'khvGW7kDj4MeJ2uG8c3z973No49wWY'
+                'token' => 'khvGW7kDj4MeJ2uG8c3z973No49wWY',
             ],
             [
                 'user' => '2T72X267muFg2FGZqT46ze8KskxMmA',
-                'token' => '4GmnbfBcr3rR4VT7r2G4eK22HL7a2J'
+                'token' => '4GmnbfBcr3rR4VT7r2G4eK22HL7a2J',
             ],
             [
                 'user' => 'LB787zoD82899PqpT6zbiGeaAAo8xA',
-                'token' => 'Q7HTQ9yjW8LRfroy83V34764ydaYQE'
-            ]
+                'token' => 'Q7HTQ9yjW8LRfroy83V34764ydaYQE',
+            ],
         ];
     }
 

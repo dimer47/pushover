@@ -8,23 +8,35 @@ use LeonardoTeixeira\Pushover\Exceptions\InvalidArgumentException;
 class Message
 {
     private $message;
+
     private $title;
+
     private $url;
+
     private $devices = [];
+
     private $urlTitle;
+
     private $priority;
+
     private $retry;
+
     private $expire;
+
     private $callback;
+
     private $sound;
+
     private $html;
+
     private $date;
-	private $attachment;
+
+    private $attachment;
 
     /**
      * @param $message
      * @param $title
-     * @param int  $priority
+     * @param  int  $priority
      */
     public function __construct($message = null, $title = null, int $priority = Priority::NORMAL)
     {
@@ -74,7 +86,7 @@ class Message
     }
 
     /**
-     * @param array  $devices
+     * @param  array  $devices
      */
     public function setDevices(array $devices)
     {
@@ -140,14 +152,13 @@ class Message
     /**
      * @return mixed
      */
-	public function getAttachment()
-	{
-		return $this->attachment;
-	}
+    public function getAttachment()
+    {
+        return $this->attachment;
+    }
 
     /**
      * @param $message
-     *
      * @return void
      */
     public function setMessage($message)
@@ -157,7 +168,6 @@ class Message
 
     /**
      * @param $title
-     *
      * @return void
      */
     public function setTitle($title)
@@ -167,7 +177,6 @@ class Message
 
     /**
      * @param $url
-     *
      * @return void
      */
     public function setUrl($url)
@@ -177,7 +186,6 @@ class Message
 
     /**
      * @param $urlTitle
-     *
      * @return void
      */
     public function setUrlTitle($urlTitle)
@@ -186,21 +194,20 @@ class Message
     }
 
     /**
-     * @param int  $priority
+     * @param  int  $priority
      *
      * @throws \LeonardoTeixeira\Pushover\Exceptions\InvalidArgumentException
      */
     public function setPriority(int $priority)
     {
-        if (!Priority::has($priority)) {
-          throw new InvalidArgumentException('The priority \'' . $priority . '\' is invalid.');
+        if (! Priority::has($priority)) {
+            throw new InvalidArgumentException('The priority \''.$priority.'\' is invalid.');
         }
         $this->priority = $priority;
     }
 
     /**
      * @param $retry
-     *
      * @return void
      */
     public function setRetry($retry)
@@ -210,7 +217,6 @@ class Message
 
     /**
      * @param $expire
-     *
      * @return void
      */
     public function setExpire($expire)
@@ -220,7 +226,6 @@ class Message
 
     /**
      * @param $callback
-     *
      * @return void
      */
     public function setCallback($callback)
@@ -233,28 +238,27 @@ class Message
      */
     public function setSound($sound)
     {
-        if (!Sound::has($sound)) {
-          throw new InvalidArgumentException('The sound \'' . $sound . '\' is invalid.');
+        if (! Sound::has($sound)) {
+            throw new InvalidArgumentException('The sound \''.$sound.'\' is invalid.');
         }
         $this->sound = $sound;
     }
 
     /**
      * @param $html
-     *
      * @return void
      */
     public function setHtml($html)
     {
-        if ($html)
+        if ($html) {
             $this->html = 1;
-        else
+        } else {
             $this->html = 0;
+        }
     }
 
     /**
-     * @param \DateTime  $date
-     *
+     * @param  \DateTime  $date
      * @return void
      */
     public function setDate(DateTime $date)
@@ -264,20 +268,19 @@ class Message
 
     /**
      * @param $attachment
-     *
      * @return void
      */
     public function setAttachment($attachment)
-	{
-		$this->attachment = $attachment;
-	}
+    {
+        $this->attachment = $attachment;
+    }
 
     /**
      * @return bool
      */
     public function hasTitle(): bool
     {
-        return !is_null($this->title);
+        return ! is_null($this->title);
     }
 
     /**
@@ -285,7 +288,7 @@ class Message
      */
     public function hasUrl(): bool
     {
-        return !is_null($this->url);
+        return ! is_null($this->url);
     }
 
     /**
@@ -293,7 +296,7 @@ class Message
      */
     public function hasDefinedSpecificDevices(): bool
     {
-        return !empty($this->devices);
+        return ! empty($this->devices);
     }
 
     /**
@@ -301,7 +304,7 @@ class Message
      */
     public function hasUrlTitle(): bool
     {
-        return !is_null($this->urlTitle);
+        return ! is_null($this->urlTitle);
     }
 
     /**
@@ -309,7 +312,7 @@ class Message
      */
     public function hasRetry(): bool
     {
-        return !is_null($this->retry);
+        return ! is_null($this->retry);
     }
 
     /**
@@ -317,7 +320,7 @@ class Message
      */
     public function hasExpire(): bool
     {
-        return !is_null($this->expire);
+        return ! is_null($this->expire);
     }
 
     /**
@@ -325,7 +328,7 @@ class Message
      */
     public function hasCallback(): bool
     {
-        return !is_null($this->callback);
+        return ! is_null($this->callback);
     }
 
     /**
@@ -333,7 +336,7 @@ class Message
      */
     public function hasSound(): bool
     {
-        return !is_null($this->sound);
+        return ! is_null($this->sound);
     }
 
     /**
@@ -341,7 +344,7 @@ class Message
      */
     public function hasHtml(): bool
     {
-        return !is_null($this->html);
+        return ! is_null($this->html);
     }
 
     /**
@@ -349,7 +352,7 @@ class Message
      */
     public function hasDate(): bool
     {
-        return ($this->date instanceof DateTime);
+        return $this->date instanceof DateTime;
     }
 
     /**
@@ -357,6 +360,6 @@ class Message
      */
     public function hasAttachment(): bool
     {
-		return file_exists($this->attachment);
-	}
+        return file_exists($this->attachment);
+    }
 }

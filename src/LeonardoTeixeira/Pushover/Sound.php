@@ -5,26 +5,47 @@ namespace LeonardoTeixeira\Pushover;
 class Sound
 {
     const PUSHOVER = 'pushover';
+
     const BIKE = 'bike';
+
     const BUGLE = 'bugle';
+
     const CASHREGISTER = 'cashregister';
+
     const CLASSICAL = 'classical';
+
     const COSMIC = 'cosmic';
+
     const FALLING = 'falling';
+
     const GAMELAN = 'gamelan';
+
     const INCOMING = 'incoming';
+
     const INTERMISSION = 'intermission';
+
     const MAGIC = 'magic';
+
     const MECHANICAL = 'mechanical';
+
     const PIANOBAR = 'pianobar';
+
     const SIREN = 'siren';
+
     const SPACEALARM = 'spacealarm';
+
     const TUGBOAT = 'tugboat';
+
     const ALIEN = 'alien';
+
     const CLIMB = 'climb';
+
     const PERSISTENT = 'persistent';
+
     const ECHOO = 'echo';
+
     const UPDOWN = 'updown';
+
     const NONE = 'none';
 
     private static $CUSTOMS = [];
@@ -39,15 +60,15 @@ class Sound
 
     /**
      * @param $sound
-     *
      * @return bool
      */
     public static function has($sound): bool
     {
-      if (in_array($sound, self::getAllSounds())) {
-        return true;
-      }
-      return false;
+        if (in_array($sound, self::getAllSounds())) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -57,6 +78,7 @@ class Sound
     {
         return self::$CUSTOMS;
     }
+
     /**
      * @return array
      */
@@ -84,12 +106,12 @@ class Sound
             self::PERSISTENT,
             self::ECHOO,
             self::UPDOWN,
-            self::NONE
+            self::NONE,
         ];
     }
 
     /**
-     * @param array  $sounds
+     * @param  array  $sounds
      */
     public static function setCustomSound(array $sounds): void
     {
@@ -97,7 +119,7 @@ class Sound
     }
 
     /**
-     * @param string  $sound
+     * @param  string  $sound
      */
     public static function addCustomSound(string $sound): void
     {
@@ -105,7 +127,7 @@ class Sound
     }
 
     /**
-     * @param string  $sound
+     * @param  string  $sound
      */
     public static function removeCustomSound(string $sound): void
     {

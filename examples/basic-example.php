@@ -1,10 +1,10 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 use LeonardoTeixeira\Pushover\Client;
-use LeonardoTeixeira\Pushover\Message;
 use LeonardoTeixeira\Pushover\Exceptions\PushoverException;
+use LeonardoTeixeira\Pushover\Message;
 
 $client = new Client('YOUR_USER_CODE_HERE', 'YOUR_TOKEN_HERE');
 

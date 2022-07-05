@@ -24,7 +24,6 @@ class Receipt
 
     /**
      * @param $receipt
-     *
      * @return void
      */
     public function setReceipt($receipt)
@@ -37,6 +36,6 @@ class Receipt
      */
     public function hasReceipt(): bool
     {
-        return !is_null($this->receipt);
+        return ! is_null($this->receipt);
     }
 }

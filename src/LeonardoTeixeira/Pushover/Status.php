@@ -7,26 +7,34 @@ use LeonardoTeixeira\Pushover\Exceptions\InvalidArgumentException;
 class Status
 {
     const ACKNOWLEDGED = 'acknowledged';
+
     const ACKNOWLEDGED_AT = 'acknowledged_at';
+
     const ACKNOWLEDGED_BY = 'acknowledged_by';
+
     const ACKNOWLEDGED_BY_DEVICE = 'acknowledged_by_device';
+
     const LAST_DELIVERED_AT = 'last_delivered_at';
+
     const EXPIRED = 'expired';
+
     const EXPIRED_AT = 'expires_at';
+
     const CALLED_BACK = 'called_back';
+
     const CALLED_BACK_AT = 'called_back_at';
-    
+
     private $status = [
-            self::ACKNOWLEDGED => null,
-            self::ACKNOWLEDGED_AT => null,
-            self::ACKNOWLEDGED_BY => null,
-            self::ACKNOWLEDGED_BY_DEVICE => null,
-            self::LAST_DELIVERED_AT => null,
-            self::EXPIRED => null,
-            self::EXPIRED_AT => null,
-            self::CALLED_BACK => null,
-            self::CALLED_BACK_AT => null
-        ];
+        self::ACKNOWLEDGED => null,
+        self::ACKNOWLEDGED_AT => null,
+        self::ACKNOWLEDGED_BY => null,
+        self::ACKNOWLEDGED_BY_DEVICE => null,
+        self::LAST_DELIVERED_AT => null,
+        self::EXPIRED => null,
+        self::EXPIRED_AT => null,
+        self::CALLED_BACK => null,
+        self::CALLED_BACK_AT => null,
+    ];
 
     /**
      * @param $status
@@ -35,12 +43,13 @@ class Status
      */
     public function __construct($status = null)
     {
-        if(!is_null($status)) {
-            if(!is_array($status))
-                throw new InvalidArgumentException('The status \'' . $status . '\' is invalid.');
-            
-            foreach($status as $key => $value) {
-                if(array_key_exists($key, $this->status)) {
+        if (! is_null($status)) {
+            if (! is_array($status)) {
+                throw new InvalidArgumentException('The status \''.$status.'\' is invalid.');
+            }
+
+            foreach ($status as $key => $value) {
+                if (array_key_exists($key, $this->status)) {
                     $this->status[$key] = $value;
                 }
             }
@@ -49,7 +58,6 @@ class Status
 
     /**
      * @param $value
-     *
      * @return void
      */
     public function setAcknowledged($value)
@@ -59,7 +67,6 @@ class Status
 
     /**
      * @param $value
-     *
      * @return void
      */
     public function setAcknowledgedAt($value)
@@ -69,7 +76,6 @@ class Status
 
     /**
      * @param $value
-     *
      * @return void
      */
     public function setAcknowledgedBy($value)
@@ -79,7 +85,6 @@ class Status
 
     /**
      * @param $value
-     *
      * @return void
      */
     public function setAcknowledgedByDevice($value)
@@ -89,7 +94,6 @@ class Status
 
     /**
      * @param $value
-     *
      * @return void
      */
     public function setLastDeliveredAt($value)
@@ -99,7 +103,6 @@ class Status
 
     /**
      * @param $value
-     *
      * @return void
      */
     public function setExpired($value)
@@ -109,7 +112,6 @@ class Status
 
     /**
      * @param $value
-     *
      * @return void
      */
     public function setExpiredAt($value)
@@ -119,7 +121,6 @@ class Status
 
     /**
      * @param $value
-     *
      * @return void
      */
     public function setCalledBack($value)
@@ -129,7 +130,6 @@ class Status
 
     /**
      * @param $value
-     *
      * @return void
      */
     public function setCalledBackAt($value)
@@ -214,7 +214,7 @@ class Status
      */
     public function hasAcknowledged(): bool
     {
-        return !is_null($this->status[self::ACKNOWLEDGED]);
+        return ! is_null($this->status[self::ACKNOWLEDGED]);
     }
 
     /**
@@ -222,7 +222,7 @@ class Status
      */
     public function hasAcknowledgedAt(): bool
     {
-        return !is_null($this->status[self::ACKNOWLEDGED_AT]);
+        return ! is_null($this->status[self::ACKNOWLEDGED_AT]);
     }
 
     /**
@@ -230,7 +230,7 @@ class Status
      */
     public function hasAcknowledgedBy(): bool
     {
-        return !is_null($this->status[self::ACKNOWLEDGED_BY]);
+        return ! is_null($this->status[self::ACKNOWLEDGED_BY]);
     }
 
     /**
@@ -238,7 +238,7 @@ class Status
      */
     public function hasAcknowledgedByDevice(): bool
     {
-        return !is_null($this->status[self::ACKNOWLEDGED_BY_DEVICE]);
+        return ! is_null($this->status[self::ACKNOWLEDGED_BY_DEVICE]);
     }
 
     /**
@@ -246,7 +246,7 @@ class Status
      */
     public function hasLastDeliveredAt(): bool
     {
-        return !is_null($this->status[self::LAST_DELIVERED_AT]);
+        return ! is_null($this->status[self::LAST_DELIVERED_AT]);
     }
 
     /**
@@ -254,7 +254,7 @@ class Status
      */
     public function hasExpired(): bool
     {
-        return !is_null($this->status[self::EXPIRED]);
+        return ! is_null($this->status[self::EXPIRED]);
     }
 
     /**
@@ -262,7 +262,7 @@ class Status
      */
     public function hasExpiredAt(): bool
     {
-        return !is_null($this->status[self::EXPIRED_AT]);
+        return ! is_null($this->status[self::EXPIRED_AT]);
     }
 
     /**
@@ -270,7 +270,7 @@ class Status
      */
     public function hasCalledBack(): bool
     {
-        return !is_null($this->status[self::CALLED_BACK]);
+        return ! is_null($this->status[self::CALLED_BACK]);
     }
 
     /**
@@ -278,6 +278,6 @@ class Status
      */
     public function hasCalledBackAt(): bool
     {
-        return !is_null($this->status[self::CALLED_BACK_AT]);
+        return ! is_null($this->status[self::CALLED_BACK_AT]);
     }
 }

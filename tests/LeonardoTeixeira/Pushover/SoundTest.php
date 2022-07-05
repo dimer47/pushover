@@ -6,7 +6,6 @@ use PHPUnit\Framework\TestCase;
 
 class SoundTest extends TestCase
 {
-
     private $sounds;
 
     protected function setUp(): void

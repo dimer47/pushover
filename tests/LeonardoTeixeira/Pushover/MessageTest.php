@@ -168,6 +168,7 @@ class MessageTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \LeonardoTeixeira\Pushover\Exceptions\InvalidArgumentException
      */
     public function testInvalidArgumentExceptionFromPriority()
@@ -179,6 +180,7 @@ class MessageTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \LeonardoTeixeira\Pushover\Exceptions\InvalidArgumentException
      */
     public function testInvalidArgumentExceptionFromSound()

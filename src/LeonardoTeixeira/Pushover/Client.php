@@ -11,14 +11,16 @@ use Requests_Hooks;
 class Client
 {
     private $user;
+
     private $token;
 
     const API_MESSAGE_URL = 'https://api.pushover.net/1/messages.json';
+
     const API_RECEIPTS_URL = 'https://api.pushover.net/1/receipts';
 
     /**
-     * @param string|null  $user
-     * @param string|null  $token
+     * @param  string|null  $user
+     * @param  string|null  $token
      */
     public function __construct(string $user = null, string $token = null)
     {
@@ -43,8 +45,7 @@ class Client
     }
 
     /**
-     * @param string  $user
-     *
+     * @param  string  $user
      * @return void
      */
     public function setUser(string $user)
@@ -53,8 +54,7 @@ class Client
     }
 
     /**
-     * @param string  $token
-     *
+     * @param  string  $token
      * @return void
      */
     public function setToken(string $token)
@@ -63,9 +63,9 @@ class Client
     }
 
     /**
-     * @param \LeonardoTeixeira\Pushover\Message  $message
-     *
+     * @param  \LeonardoTeixeira\Pushover\Message  $message
      * @return \LeonardoTeixeira\Pushover\Receipt
+     *
      * @throws \LeonardoTeixeira\Pushover\Exceptions\PushoverException
      */
     public function push(Message $message): Receipt
@@ -75,11 +75,11 @@ class Client
         }
 
         if ($message->getPriority() == Priority::EMERGENCY) {
-            if (!$message->hasRetry()) {
+            if (! $message->hasRetry()) {
                 throw new PushoverException('The emergency priority must have the \'retry\' parameter.');
             }
 
-            if (!$message->hasExpire()) {
+            if (! $message->hasExpire()) {
                 throw new PushoverException('The emergency priority must have the \'expire\' parameter.');
             }
         }
@@ -152,7 +152,7 @@ class Client
             $request = Requests::post(self::API_MESSAGE_URL, [], $postData, $hooks);
             $responseJson = json_decode($request->body);
 
-            if (!isset($responseJson->status) || $responseJson->status != 1) {
+            if (! isset($responseJson->status) || $responseJson->status != 1) {
                 if (isset($responseJson->errors)) {
                     throw new PushoverException($responseJson->errors[0]);
                 } else {
@@ -170,14 +170,14 @@ class Client
     }
 
     /**
-     * @param \LeonardoTeixeira\Pushover\Receipt  $receipt
-     *
+     * @param  \LeonardoTeixeira\Pushover\Receipt  $receipt
      * @return \LeonardoTeixeira\Pushover\Status
+     *
      * @throws \LeonardoTeixeira\Pushover\Exceptions\PushoverException
      */
     public function poll(Receipt $receipt): Status
     {
-        if (!$receipt instanceof Receipt) {
+        if (! $receipt instanceof Receipt) {
             throw new PushoverException('The parameter \'$receipt\' must be a Receipt instance.');
         }
 
@@ -189,24 +189,24 @@ class Client
             $request = Requests::get(self::API_RECEIPTS_URL.'/'.$receipt->getReceipt().'.json?token='.$this->token, []);
             $responseJson = json_decode($request->body, true);
 
-            if (!isset($responseJson['status']) || $responseJson['status'] != 1) {
+            if (! isset($responseJson['status']) || $responseJson['status'] != 1) {
                 if (isset($responseJson['errors'])) {
                     throw new PushoverException($responseJson['errors'][0]);
                 } else {
                     throw new PushoverException('Unable to access the Pushover API.');
                 }
             }
-            return new Status($responseJson);
 
+            return new Status($responseJson);
         } catch (Exception $e) {
             throw new PushoverException($e->getMessage());
         }
     }
 
     /**
-     * @param \LeonardoTeixeira\Pushover\Receipt  $receipt
-     *
+     * @param  \LeonardoTeixeira\Pushover\Receipt  $receipt
      * @return void
+     *
      * @throws \LeonardoTeixeira\Pushover\Exceptions\PushoverException
      */
     public function cancel(Receipt $receipt)
@@ -219,7 +219,7 @@ class Client
             $request = Requests::post(self::API_RECEIPTS_URL.'/'.$receipt->getReceipt().'/cancel.json', [], ['token' => $this->token]);
             $responseJson = json_decode($request->body, true);
 
-            if (!isset($responseJson['status']) || $responseJson['status'] != 1) {
+            if (! isset($responseJson['status']) || $responseJson['status'] != 1) {
                 if (isset($responseJson['errors'])) {
                     throw new PushoverException($responseJson['errors'][0]);
                 } else {

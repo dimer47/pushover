@@ -2,6 +2,8 @@
 
 namespace LeonardoTeixeira\Pushover\Exceptions;
 
-class PushoverException extends \Exception
+use Exception;
+
+class PushoverException extends Exception
 {
 }

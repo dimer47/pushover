@@ -2,7 +2,9 @@
 
 namespace LeonardoTeixeira\Pushover;
 
-class PriorityTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class PriorityTest extends TestCase
 {
     public function testPriorities()
     {

@@ -80,7 +80,7 @@ $client = new Client('YOUR_USER_CODE_HERE', 'YOUR_TOKEN_HERE');
 $message = new Message();
 $message->setMessage('Your messsage <b>here</b>.');
 $message->setTitle('Title here');
-$message->setUrl('http://www.example.com/');
+$message->setUrl('https://www.example.com/');
 $message->setAttachment('pic.jpg');
 $message->setUrlTitle('Click me!');
 $message->setPriority(Priority::HIGH);
@@ -106,7 +106,7 @@ For the emergency priority you must provide the parameters `retry` and `expire`.
 $message->setPriority(Priority::EMERGENCY);
 $message->setRetry(60);
 $message->setExpire(10800);
-$message->setCallback('http://callback-url.com/');
+$message->setCallback('https://callback-url.com/');
 ```
 
 You can poll the notification status using `poll`.

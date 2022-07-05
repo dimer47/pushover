@@ -2,22 +2,29 @@
 
 namespace LeonardoTeixeira\Pushover;
 
-class MessageTest extends \PHPUnit_Framework_TestCase
+use DateTime;
+use LeonardoTeixeira\Pushover\Exceptions\InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
+
+class MessageTest extends TestCase
 {
     private $messages;
 
-    public function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
+
         $this->messages = [
             [
                 'title' => 'Example Message 1',
                 'message' => 'Example content message <b>1</b>.',
-                'url' => 'http://www.google.com/',
+                'url' => 'https://www.google.com/',
                 'url_title' => 'Google',
-                'priority' => - 2,
+                'priority' => -2,
                 'sound' => 'classical',
                 'html' => 1,
-                'date' => '2014-08-14'
+                'date' => '2014-08-14',
+                'devices' => ['iphone', 'droid'],
             ],
             [
                 'title' => 'Example Message 2',
@@ -27,7 +34,8 @@ class MessageTest extends \PHPUnit_Framework_TestCase
                 'priority' => 1,
                 'sound' => 'spacealarm',
                 'html' => 1,
-                'date' => '2014-08-10'
+                'date' => '2014-08-10',
+                'devices' => ['iphone'],
             ],
             [
                 'title' => 'Example Message 3',
@@ -40,8 +48,9 @@ class MessageTest extends \PHPUnit_Framework_TestCase
                 'date' => '2017-01-19',
                 'retry' => 30,
                 'expire' => 7200,
-                'callback' => 'http://localhost'
-            ]
+                'callback' => 'http://localhost',
+                'devices' => [],
+            ],
         ];
     }
 
@@ -55,6 +64,10 @@ class MessageTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    /**
+     * @throws \LeonardoTeixeira\Pushover\Exceptions\InvalidArgumentException
+     * @throws \Exception
+     */
     public function testGettersAndSetters()
     {
         foreach ($this->messages as $message) {
@@ -64,10 +77,11 @@ class MessageTest extends \PHPUnit_Framework_TestCase
             $m->setMessage($message['message']);
             $m->setUrl($message['url']);
             $m->setUrlTitle($message['url_title']);
+            $m->setDevices($message['devices']);
             $m->setPriority($message['priority']);
             $m->setSound($message['sound']);
             $m->setHtml($message['html']);
-            $m->setDate(new \DateTime($message['date']));
+            $m->setDate(new DateTime($message['date']));
             if ($message['priority'] == 2) {
                 $m->setRetry($message['retry']);
                 $m->setExpire($message['expire']);
@@ -77,6 +91,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase
             $this->assertEquals($message['title'], $m->getTitle());
             $this->assertEquals($message['message'], $m->getMessage());
             $this->assertEquals($message['url'], $m->getUrl());
+            $this->assertEquals($message['devices'], $m->getDevices());
             $this->assertEquals($message['url_title'], $m->getUrlTitle());
             $this->assertEquals($message['priority'], $m->getPriority());
             $this->assertEquals($message['sound'], $m->getSound());
@@ -91,6 +106,10 @@ class MessageTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    /**
+     * @throws \LeonardoTeixeira\Pushover\Exceptions\InvalidArgumentException
+     * @throws \Exception
+     */
     public function testHasMethods()
     {
         foreach ($this->messages as $message) {
@@ -102,6 +121,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase
             $this->assertFalse($m->hasTitle());
             $this->assertFalse($m->hasUrl());
             $this->assertFalse($m->hasUrlTitle());
+            $this->assertFalse($m->hasDefinedSpecificDevices());
             $this->assertFalse($m->hasRetry());
             $this->assertFalse($m->hasExpire());
             $this->assertFalse($m->hasCallback());
@@ -120,7 +140,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase
             $m->setPriority($message['priority']);
             $m->setSound($message['sound']);
             $m->setHtml($message['html']);
-            $m->setDate(new \DateTime($message['date']));
+            $m->setDate(new DateTime($message['date']));
             if ($message['priority'] == 2) {
                 $m->setRetry($message['retry']);
                 $m->setExpire($message['expire']);
@@ -147,20 +167,25 @@ class MessageTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException LeonardoTeixeira\Pushover\Exceptions\InvalidArgumentException
+     * @return void
+     * @throws \LeonardoTeixeira\Pushover\Exceptions\InvalidArgumentException
      */
     public function testInvalidArgumentExceptionFromPriority()
     {
-      $m = new Message();
-      $m->setPriority(-5);
+        $this->expectException(InvalidArgumentException::class);
+        $m = new Message();
+        $m->setPriority(-5);
     }
 
     /**
-     * @expectedException LeonardoTeixeira\Pushover\Exceptions\InvalidArgumentException
+     * @return void
+     * @throws \LeonardoTeixeira\Pushover\Exceptions\InvalidArgumentException
      */
     public function testInvalidArgumentExceptionFromSound()
     {
-      $m = new Message();
-      $m->setSound('invalid_sound');
+        $this->expectException(InvalidArgumentException::class);
+
+        $m = new Message();
+        $m->setSound('invalid_sound');
     }
 }

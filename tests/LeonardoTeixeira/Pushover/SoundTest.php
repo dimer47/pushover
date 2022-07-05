@@ -2,13 +2,17 @@
 
 namespace LeonardoTeixeira\Pushover;
 
-class SountTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class SoundTest extends TestCase
 {
 
     private $sounds;
 
-    public function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
+
         $this->sounds = [
             'pushover',
             'bike',
@@ -31,7 +35,7 @@ class SountTest extends \PHPUnit_Framework_TestCase
             'persistent',
             'echo',
             'updown',
-            'none'
+            'none',
         ];
     }
 
@@ -45,7 +49,27 @@ class SountTest extends \PHPUnit_Framework_TestCase
 
     public function testIfSoundExists()
     {
-      $this->assertTrue(Sound::has('mechanical'));
-      $this->assertFalse(Sound::has('invalid_sound'));
+        $this->assertTrue(Sound::has('mechanical'));
+        $this->assertFalse(Sound::has('invalid_sound'));
+    }
+
+    public function testAddingCustomSound()
+    {
+        Sound::addCustomSound('customSound');
+        $this->assertTrue(Sound::has('customSound'));
+    }
+
+    public function testRemoveCustomSound()
+    {
+        Sound::addCustomSound('customSound');
+        Sound::removeCustomSound('customSound');
+        $this->assertFalse(Sound::has('customSound'));
+    }
+
+    public function testSetCustomSounds()
+    {
+        Sound::setCustomSound(['customSound1', 'customSound2']);
+        $this->assertTrue(Sound::has('customSound1'));
+        $this->assertTrue(Sound::has('customSound2'));
     }
 }

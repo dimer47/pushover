@@ -28,6 +28,11 @@ class Status
             self::CALLED_BACK_AT => null
         ];
 
+    /**
+     * @param $status
+     *
+     * @throws \LeonardoTeixeira\Pushover\Exceptions\InvalidArgumentException
+     */
     public function __construct($status = null)
     {
         if(!is_null($status)) {
@@ -41,139 +46,238 @@ class Status
             }
         }
     }
- 
+
+    /**
+     * @param $value
+     *
+     * @return void
+     */
     public function setAcknowledged($value)
     {
         $this->status[self::ACKNOWLEDGED] = $value;
-    }  
-      
+    }
+
+    /**
+     * @param $value
+     *
+     * @return void
+     */
     public function setAcknowledgedAt($value)
     {
         $this->status[self::ACKNOWLEDGED_AT] = $value;
-    }  
-    
+    }
+
+    /**
+     * @param $value
+     *
+     * @return void
+     */
     public function setAcknowledgedBy($value)
     {
         $this->status[self::ACKNOWLEDGED_BY] = $value;
-    }  
-       
+    }
+
+    /**
+     * @param $value
+     *
+     * @return void
+     */
     public function setAcknowledgedByDevice($value)
     {
         $this->status[self::ACKNOWLEDGED_BY_DEVICE] = $value;
-    }  
-           
+    }
+
+    /**
+     * @param $value
+     *
+     * @return void
+     */
     public function setLastDeliveredAt($value)
     {
         $this->status[self::LAST_DELIVERED_AT] = $value;
-    }  
-            
+    }
+
+    /**
+     * @param $value
+     *
+     * @return void
+     */
     public function setExpired($value)
     {
         $this->status[self::EXPIRED] = $value;
-    } 
-    
+    }
+
+    /**
+     * @param $value
+     *
+     * @return void
+     */
     public function setExpiredAt($value)
     {
         $this->status[self::EXPIRED_AT] = $value;
-    }     
+    }
 
+    /**
+     * @param $value
+     *
+     * @return void
+     */
     public function setCalledBack($value)
     {
         $this->status[self::CALLED_BACK] = $value;
-    }  
-    
+    }
+
+    /**
+     * @param $value
+     *
+     * @return void
+     */
     public function setCalledBackAt($value)
     {
         $this->status[self::CALLED_BACK_AT] = $value;
-    }  
- 
+    }
+
+    /**
+     * @return null
+     */
     public function getAcknowledged()
     {
         return $this->status[self::ACKNOWLEDGED];
-    }  
-      
+    }
+
+    /**
+     * @return null
+     */
     public function getAcknowledgedAt()
     {
         return $this->status[self::ACKNOWLEDGED_AT];
-    }  
-    
+    }
+
+    /**
+     * @return null
+     */
     public function getAcknowledgedBy()
     {
         return $this->status[self::ACKNOWLEDGED_BY];
-    }  
-       
+    }
+
+    /**
+     * @return null
+     */
     public function getAcknowledgedByDevice()
     {
         return $this->status[self::ACKNOWLEDGED_BY_DEVICE];
-    }  
-           
+    }
+
+    /**
+     * @return null
+     */
     public function getLastDeliveredAt()
     {
         return $this->status[self::LAST_DELIVERED_AT];
-    }  
-            
+    }
+
+    /**
+     * @return null
+     */
     public function getExpired()
     {
         return $this->status[self::EXPIRED];
-    } 
-    
+    }
+
+    /**
+     * @return null
+     */
     public function getExpiredAt()
     {
         return $this->status[self::EXPIRED_AT];
-    }     
+    }
 
+    /**
+     * @return null
+     */
     public function getCalledBack()
     {
         return $this->status[self::CALLED_BACK];
-    }  
-    
+    }
+
+    /**
+     * @return null
+     */
     public function getCalledBackAt()
     {
         return $this->status[self::CALLED_BACK_AT];
-    } 
- 
-    public function hasAcknowledged()
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAcknowledged(): bool
     {
         return !is_null($this->status[self::ACKNOWLEDGED]);
-    }  
-      
-    public function hasAcknowledgedAt()
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAcknowledgedAt(): bool
     {
         return !is_null($this->status[self::ACKNOWLEDGED_AT]);
-    }  
-    
-    public function hasAcknowledgedBy()
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAcknowledgedBy(): bool
     {
         return !is_null($this->status[self::ACKNOWLEDGED_BY]);
-    }  
-       
-    public function hasAcknowledgedByDevice()
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAcknowledgedByDevice(): bool
     {
         return !is_null($this->status[self::ACKNOWLEDGED_BY_DEVICE]);
-    }  
-           
-    public function hasLastDeliveredAt()
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasLastDeliveredAt(): bool
     {
         return !is_null($this->status[self::LAST_DELIVERED_AT]);
-    }  
-            
-    public function hasExpired()
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasExpired(): bool
     {
         return !is_null($this->status[self::EXPIRED]);
-    } 
-    
-    public function hasExpiredAt()
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasExpiredAt(): bool
     {
         return !is_null($this->status[self::EXPIRED_AT]);
-    }     
+    }
 
-    public function hasCalledBack()
+    /**
+     * @return bool
+     */
+    public function hasCalledBack(): bool
     {
         return !is_null($this->status[self::CALLED_BACK]);
-    }  
-    
-    public function hasCalledBackAt()
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasCalledBackAt(): bool
     {
         return !is_null($this->status[self::CALLED_BACK_AT]);
-    }     
+    }
 }

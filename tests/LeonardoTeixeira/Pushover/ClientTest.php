@@ -2,12 +2,16 @@
 
 namespace LeonardoTeixeira\Pushover;
 
-class ClientTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class ClientTest extends TestCase
 {
     private $clients;
 
-    public function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
+
         $this->clients = [
             [
                 'user' => 'DFx4rPNV232ad49uzPE4vAKaU2m67q',

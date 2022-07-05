@@ -10,7 +10,10 @@ class Priority
     const HIGH = 1;
     const EMERGENCY = 2;
 
-    public static function getAllPriorities()
+    /**
+     * @return int[]
+     */
+    public static function getAllPriorities(): array
     {
         return [
             self::LOWEST,
@@ -21,7 +24,12 @@ class Priority
         ];
     }
 
-    public static function has($priority)
+    /**
+     * @param $priority
+     *
+     * @return bool
+     */
+    public static function has($priority): bool
     {
       if (in_array($priority, self::getAllPriorities())) {
         return true;

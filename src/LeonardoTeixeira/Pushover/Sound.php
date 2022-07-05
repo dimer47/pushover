@@ -27,7 +27,40 @@ class Sound
     const UPDOWN = 'updown';
     const NONE = 'none';
 
-    public static function getAllSounds()
+    private static $CUSTOMS = [];
+
+    /**
+     * @return array
+     */
+    public static function getAllSounds(): array
+    {
+        return array_merge(self::getCustomSound(), self::getBasicsSound());
+    }
+
+    /**
+     * @param $sound
+     *
+     * @return bool
+     */
+    public static function has($sound): bool
+    {
+      if (in_array($sound, self::getAllSounds())) {
+        return true;
+      }
+      return false;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getCustomSound(): array
+    {
+        return self::$CUSTOMS;
+    }
+    /**
+     * @return array
+     */
+    public static function getBasicsSound(): array
     {
         return [
             self::PUSHOVER,
@@ -55,11 +88,29 @@ class Sound
         ];
     }
 
-    public static function has($sound)
+    /**
+     * @param array  $sounds
+     */
+    public static function setCustomSound(array $sounds): void
     {
-      if (in_array($sound, self::getAllSounds())) {
-        return true;
-      }
-      return false;
+        self::$CUSTOMS = $sounds;
+    }
+
+    /**
+     * @param string  $sound
+     */
+    public static function addCustomSound(string $sound): void
+    {
+        self::$CUSTOMS[] = $sound;
+    }
+
+    /**
+     * @param string  $sound
+     */
+    public static function removeCustomSound(string $sound): void
+    {
+        if (($key = array_search($sound, self::$CUSTOMS)) !== false) {
+            unset(self::$CUSTOMS[$key]);
+        }
     }
 }
